@@ -121,7 +121,7 @@ class ScreenEngine:
 - **任务 1 直接受益**：五规范视角 = 基准档案视角集；ResNet18 视角分类器用于关键帧后的视角归组；FDI 实例分割替代原"角点检测"路径（掩码 → 每牙轮廓/质心/姿态 → 拟合牙弓曲线，信息量大于角点）
 - **任务 2 连锁升级**：合成形变改为真实牙实例级位移/旋转（移动某 FDI 实例已知 δ，标签自带），变化热力图按牙渲染
 - **额外样板**：其 Flask+React 临床修正界面是阶段 3 标注工具参考
-- **许可红线**：仓库无 LICENSE（用代码前邮件作者 federico.bolelli@unimore.it）；SegmentAnyTooth 权重非商用（产品禁带）；Mask R-CNN 为 vanilla torchvision 可借鉴思路；数据集注册下载 + 强制引用，商用条款注册时确认并记入 data/README.md
+- **许可红线**：**已获作者邮件确认（2026-10-04）：比赛项目、仅使用数据集，按学术规范引用即可**（引用条目 `data/references.bib`，获取流程 `data/README.md`）；其余红线不变——仓库无 LICENSE（用其代码仍需邮件）；SegmentAnyTooth 权重非商用（产品禁带）；Mask R-CNN 为 vanilla torchvision 可借鉴思路；数据集不二次分发
 - **产品路径**：用其数据集自训小型实例分割器（nano 级，契合 <1s/≤10MB），权重自有，导出 INT8 ONNX
 
 - 训练数据主来源：**合成形变**（无限标注）；真实配对只做验证集（牙医金标：Little 指数等）
@@ -178,13 +178,14 @@ AI-Dentist/
 - [x] 仓库创建 + 本地初始化
 - [x] 项目书 v1.0 定稿（任务定义、接口、配置契约、数据策略与 Kimi Code 讨论完成）
 - [x] 同类项目调研：IOP-Compass（公开数据首选，许可红线与产品路径已记录，见"数据策略"）
+- [x] 数据合规与接口：作者确认引用即可；`data/README.md`（授权+下载流程）、`data/iop_compass.py`（读取接口，含冒烟自检）、`data/references.bib`（三篇引用）已就位
 - [ ] 目录结构初始化（按上节创建骨架 + requirements 钉版本）
 - [ ] 基准档案文件格式契约定型（任务 1/2 唯一接口）
 - [ ] 阶段 0 启动：任务 1 关键帧选择原型 + 口内分割公开数据调研
 
 ## 下一步（第一个小任务）
 
-1. 注册下载 IOP-Compass 数据集（ditto.ing.unimore.it，确认商用条款记入 data/README.md）；给作者发邮件询问代码许可与商用边界
+1. 下载 IOP-Compass → 上传 Drive（流程见 `data/README.md`）→ Colab 跑 `data/iop_compass.py` 冒烟（患者≈1000、每患者 5 视角、JSON 全解析），结果记入 `reports/`
 2. 按目录结构初始化骨架，requirements 钉死 torch / onnxruntime / opencv-python-headless
 3. 任务 1 第一段：视频关键帧选择原型（任意公开口腔视频可验）
 
