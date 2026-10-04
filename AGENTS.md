@@ -180,15 +180,16 @@ AI-Dentist/
 - [x] 同类项目调研：IOP-Compass（公开数据首选，许可红线与产品路径已记录，见"数据策略"）
 - [x] 数据合规与接口：作者确认引用即可；`data/README.md`、`data/iop_compass.py`、`data/references.bib` 已就位；**接口已按真实布局定型**（2026-10-05 全量诊断：`Patient_N/IOP_{Center,Upper,Down,Left,Right}_N`，标注含 FDI+bbox+质心+轮廓多边形，5,000 对配对零缺失）；全量冒烟七项全对（1000/5000/五视角各 1000/JSON 0/FDI 0）
 - [x] 任务 1 v0 几何流水线就位：`task1_baseline/`（geometry=姿态角+牙弓排序 / dossier=档案构建序列化 / smoke_10patients=端到端冒烟）；**dossier 格式 v0.1 即任务 1/2 文件契约，改动需双方同步**
+- [x] 10 患者 checkpoint 冒烟 PASS（10-05，seed=42 可复现），记录见 `reports/2026-10-05_task1_v0_smoke.md`
 - [ ] 目录结构初始化（按上节创建骨架 + requirements 钉版本）
 - [ ] 基准档案文件格式契约定型（任务 1/2 唯一接口）
 - [ ] 阶段 0 启动：任务 1 关键帧选择原型 + 口内分割公开数据调研
 
 ## 下一步（第一个小任务）
 
-1. Colab 跑 10 患者 checkpoint 冒烟：`python -m task1_baseline.smoke_10patients <数据集根目录> <Drive checkpoints 目录> --patients 10`（PASS 标准：文件数=10、无视角缺失、每患者牙数>40），输出记入 `reports/`
-2. 按目录结构初始化骨架，requirements 钉死 torch / onnxruntime / opencv-python-headless
-3. 任务 1 第一段：视频关键帧选择原型（任意公开口腔视频可验）
+1. 已知形变恢复实验：对真实牙实例施加已知位移/旋转，验证几何提取保真度——任务 1 验收与任务 2 合成数据发生器一鱼两吃
+2. 骨架补齐：`core/`（model/preprocess/postprocess）+ `configs/base.yaml`（DEPLOY-LOCK 字段）+ `training/` 训练脚本，torch / onnxruntime / opencv 版本随链路落地钉死
+3. 任务 1 第一段：视频关键帧选择原型（自拍视频方案正式启用后开工）
 
 ## 关联项目
 
