@@ -178,14 +178,14 @@ AI-Dentist/
 - [x] 仓库创建 + 本地初始化
 - [x] 项目书 v1.0 定稿（任务定义、接口、配置契约、数据策略与 Kimi Code 讨论完成）
 - [x] 同类项目调研：IOP-Compass（公开数据首选，许可红线与产品路径已记录，见"数据策略"）
-- [x] 数据合规与接口：作者确认引用即可；`data/README.md`（授权+下载流程）、`data/iop_compass.py`（读取接口，含冒烟自检）、`data/references.bib`（三篇引用）已就位
+- [x] 数据合规与接口：作者确认引用即可；`data/README.md`、`data/iop_compass.py`、`data/references.bib` 已就位；**接口已按真实布局定型**（2026-10-05 全量诊断：`Patient_N/IOP_{Center,Upper,Down,Left,Right}_N`，标注含 FDI+bbox+质心+轮廓多边形，5,000 对配对零缺失）
 - [ ] 目录结构初始化（按上节创建骨架 + requirements 钉版本）
 - [ ] 基准档案文件格式契约定型（任务 1/2 唯一接口）
 - [ ] 阶段 0 启动：任务 1 关键帧选择原型 + 口内分割公开数据调研
 
 ## 下一步（第一个小任务）
 
-1. 下载 IOP-Compass → 上传 Drive（流程见 `data/README.md`）→ Colab 跑 `data/iop_compass.py` 冒烟（患者≈1000、每患者 5 视角、JSON 全解析），结果记入 `reports/`
+1. Colab 跑新版 `data/iop_compass.py` 冒烟核对期望值（患者 1000 / 记录 5000 / 五视角各 1000 / JSON 失败 0 / FDI 非法 0），输出记入 `reports/`
 2. 按目录结构初始化骨架，requirements 钉死 torch / onnxruntime / opencv-python-headless
 3. 任务 1 第一段：视频关键帧选择原型（任意公开口腔视频可验）
 
