@@ -21,21 +21,21 @@
 ### 获取流程（站点需注册登录，Colab 无法自动下载，人工一次）
 
 1. 注册登录 https://ditto.ing.unimore.it/iop-compass/ ，下载完整数据集压缩包
-2. 解压，上传至 Google Drive：`MyDrive/Datasets/IOP-Compass/<每患者一个目录>/IOP_*.png + .json`
+2. 解压，上传至 Google Drive：`MyDrive/Datasets/AI-Dentist_dataset/IOP-Compass/<每患者一个目录>/IOP_*.png + .json`
 3. Colab 首格挂载 Drive 后读取：
 
 ```python
 import sys; sys.path.insert(0, '/content/AI-Dentist')
 from data.iop_compass import iter_records, iter_patients
-recs = list(iter_records('/content/drive/MyDrive/Datasets/IOP-Compass'))
-patients = iter_patients('/content/drive/MyDrive/Datasets/IOP-Compass')
+recs = list(iter_records('/content/drive/MyDrive/Datasets/AI-Dentist_dataset/IOP-Compass'))
+patients = iter_patients('/content/drive/MyDrive/Datasets/AI-Dentist_dataset/IOP-Compass')
 print(len(patients), '患者,', len(recs), '条记录')
 ```
 
 4. 跑模块自带冒烟检查，核对三项：患者数 ≈ 1000、每患者 5 视角、JSON 全部可解析：
 
 ```bash
-python data/iop_compass.py /content/drive/MyDrive/Datasets/IOP-Compass
+python data/iop_compass.py /content/drive/MyDrive/Datasets/AI-Dentist_dataset/IOP-Compass
 ```
 
 5. 冒烟结果记入 `reports/`
